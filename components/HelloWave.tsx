@@ -1,37 +1,14 @@
-import { StyleSheet } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  withRepeat,
-  withSequence,
-} from 'react-native-reanimated';
+import { StyleSheet, Text, View } from "react-native";
 
-import { ThemedText } from '@/components/ThemedText';
-
-export function HelloWave() {
-  const rotationAnimation = useSharedValue(0);
-
-  rotationAnimation.value = withRepeat(
-    withSequence(withTiming(25, { duration: 150 }), withTiming(0, { duration: 150 })),
-    4 // Run the animation 4 times
-  );
-
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ rotate: `${rotationAnimation.value}deg` }],
-  }));
-
-  return (
-    <Animated.View style={animatedStyle}>
-      <ThemedText style={styles.text}>👋</ThemedText>
-    </Animated.View>
-  );
+export default function HelloWave() {
+    return (
+        <View style={styles.container}>
+            <Text style={styles.waveText}>👋 Welcome to FocusWeave!</Text>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 28,
-    lineHeight: 32,
-    marginTop: -6,
-  },
+    container: { flex: 1, justifyContent: "center", alignItems: "center" },
+    waveText: { fontSize: 24, fontWeight: "bold", color: "#3A3A3A" },
 });
